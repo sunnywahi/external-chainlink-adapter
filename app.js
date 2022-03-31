@@ -1,18 +1,27 @@
-const createRequest = require('./index').createRequest
+console.clear();
+const {Client, AccountId} = require('@hashgraph/sdk');
+require('dotenv').config();
+const express = require('express');
+const bodyParser = require('body-parser');
+const appRoute = require('./scripts/route.js');
 
-const express = require('express')
-const bodyParser = require('body-parser')
-const app = express()
-const port = process.env.EA_PORT || 8080
+//start the express
+const app = express();
+const port = process.env.EA_PORT || 8080;
 
-app.use(bodyParser.json())
+//initialize body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
-app.post('/', (req, res) => {
-  console.log('POST Data: ', req.body)
-  createRequest(req.body, (status, result) => {
-    console.log('Result: ', result)
-    res.status(status).json(result)
-  })
+//initialise the hedera test client
+const hederaTestClient = Client.forTestnet();
+hederaTestClient.setOperator(process.env.HEDERA_ACCOUNT_ID, process.env.HEDERA_PRIVATE_KEY);
+
+//these details are passed to underlying routes so they can use this app and hederaTestClient objects
+appRoute(app, hederaTestClient);
+
+// finally, launch our server on port, specified
+const server = app.listen(port, () => {
+    console.log('listening on port %s...', server.address().port);
 })
 
-app.listen(port, () => console.log(`Listening on port ${port}!`))
