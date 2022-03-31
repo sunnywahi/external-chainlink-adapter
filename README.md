@@ -1,44 +1,391 @@
-# Chainlink NodeJS External Adapter Template
+# Chainlink NodeJS External Adapter
 
-This template provides a basic framework for developing Chainlink external adapters in NodeJS. Comments are included to assist with development and testing of the external adapter. Once the API-specific values (like query parameters and API key authentication) have been added to the adapter, it is very easy to add some tests to verify that the data will be correctly formatted when returned to the Chainlink node. There is no need to use any additional frameworks or to run a Chainlink node in order to test the adapter.
+This adapter is in NodeJS. Comments are included to assist with development and testing of the external adapter. Once the API-specific values (like query parameters and API key authentication) have been added to the adapter, it is very easy to add some tests to verify that the data will be correctly formatted when returned to the Chainlink node. There is no need to use any additional frameworks or to run a Chainlink node in order to test the adapter.
 
-## Creating your own adapter from this template
-
-Clone this repo and change "ExternalAdapterProject" below to the name of your project
-
-```bash
-git clone https://github.com/thodges-gh/CL-EA-NodeJS-Template.git ExternalAdapterProject
-```
-
-Enter into the newly-created directory
-
-```bash
-cd ExternalAdapterProject
-```
-
-You can remove the existing git history by running:
-
-```bash
-rm -rf .git
-```
 
 See [Install Locally](#install-locally) for a quickstart
 
 ## Input Params
 
-- `base`, `from`, or `coin`: The symbol of the currency to query
-- `quote`, `to`, or `market`: The symbol of the currency to convert to
+- `type`: type can be account or token
+- `accountId`: accountId to check in hedera
+- `mint`: if you want to mint token
 
 ## Output
 
 ```json
 {
- "jobRunID": "278c97ffadb54a5bbb93cfec5f7b5503",
- "data": {
-  "USD": 164.02,
-  "result": 164.02
- },
- "statusCode": 200
+  "jobRunID": 4,
+  "data": {
+    "raw": {
+      "tokenId": {
+        "shard": {
+          "low": 0,
+          "high": 0,
+          "unsigned": false
+        },
+        "realm": {
+          "low": 0,
+          "high": 0,
+          "unsigned": false
+        },
+        "num": {
+          "low": 30818225,
+          "high": 0,
+          "unsigned": false
+        },
+        "_checksum": null
+      },
+      "name": "\"GOAT\"",
+      "symbol": "\"GOAT\"",
+      "decimals": 0,
+      "totalSupply": {
+        "low": 13,
+        "high": 0,
+        "unsigned": true
+      },
+      "treasuryAccountId": {
+        "shard": {
+          "low": 0,
+          "high": 0,
+          "unsigned": false
+        },
+        "realm": {
+          "low": 0,
+          "high": 0,
+          "unsigned": false
+        },
+        "num": {
+          "low": 30802822,
+          "high": 0,
+          "unsigned": false
+        },
+        "aliasKey": null,
+        "_checksum": null
+      },
+      "adminKey": {
+        "_key": {
+          "_key": {
+            "_keyData": {
+              "type": "Buffer",
+              "data": [
+                20,
+                131,
+                221,
+                172,
+                113,
+                152,
+                202,
+                94,
+                20,
+                160,
+                197,
+                41,
+                71,
+                175,
+                172,
+                33,
+                70,
+                246,
+                32,
+                160,
+                66,
+                159,
+                241,
+                107,
+                35,
+                82,
+                26,
+                112,
+                209,
+                1,
+                91,
+                45
+              ]
+            }
+          }
+        }
+      },
+      "kycKey": null,
+      "freezeKey": {
+        "_key": {
+          "_key": {
+            "_keyData": {
+              "type": "Buffer",
+              "data": [
+                82,
+                218,
+                232,
+                148,
+                30,
+                252,
+                3,
+                102,
+                47,
+                37,
+                75,
+                32,
+                146,
+                191,
+                164,
+                126,
+                99,
+                241,
+                220,
+                160,
+                92,
+                127,
+                153,
+                10,
+                41,
+                176,
+                47,
+                15,
+                128,
+                148,
+                85,
+                8
+              ]
+            }
+          }
+        }
+      },
+      "pauseKey": {
+        "_key": {
+          "_key": {
+            "_keyData": {
+              "type": "Buffer",
+              "data": [
+                120,
+                243,
+                127,
+                200,
+                232,
+                90,
+                60,
+                179,
+                26,
+                156,
+                34,
+                206,
+                231,
+                241,
+                163,
+                11,
+                127,
+                23,
+                202,
+                87,
+                3,
+                55,
+                89,
+                211,
+                174,
+                173,
+                231,
+                57,
+                26,
+                153,
+                249,
+                79
+              ]
+            }
+          }
+        }
+      },
+      "wipeKey": {
+        "_key": {
+          "_key": {
+            "_keyData": {
+              "type": "Buffer",
+              "data": [
+                234,
+                93,
+                123,
+                102,
+                75,
+                212,
+                166,
+                202,
+                151,
+                243,
+                88,
+                107,
+                11,
+                75,
+                43,
+                22,
+                143,
+                228,
+                235,
+                112,
+                253,
+                180,
+                16,
+                97,
+                253,
+                74,
+                16,
+                150,
+                209,
+                183,
+                80,
+                63
+              ]
+            }
+          }
+        }
+      },
+      "supplyKey": {
+        "_key": {
+          "_key": {
+            "_keyData": {
+              "type": "Buffer",
+              "data": [
+                103,
+                156,
+                241,
+                206,
+                125,
+                71,
+                28,
+                138,
+                217,
+                226,
+                35,
+                206,
+                126,
+                135,
+                43,
+                36,
+                153,
+                24,
+                9,
+                237,
+                145,
+                177,
+                26,
+                38,
+                19,
+                84,
+                43,
+                164,
+                151,
+                59,
+                130,
+                14
+              ]
+            }
+          }
+        }
+      },
+      "feeScheduleKey": null,
+      "defaultFreezeStatus": false,
+      "defaultKycStatus": null,
+      "pauseStatus": false,
+      "isDeleted": false,
+      "autoRenewAccountId": {
+        "shard": {
+          "low": 0,
+          "high": 0,
+          "unsigned": false
+        },
+        "realm": {
+          "low": 0,
+          "high": 0,
+          "unsigned": false
+        },
+        "num": {
+          "low": 30778447,
+          "high": 0,
+          "unsigned": false
+        },
+        "aliasKey": null,
+        "_checksum": null
+      },
+      "autoRenewPeriod": {
+        "seconds": {
+          "low": 7776000,
+          "high": 0,
+          "unsigned": false
+        }
+      },
+      "expirationTime": {
+        "seconds": {
+          "low": 1653794587,
+          "high": 0,
+          "unsigned": false
+        },
+        "nanos": {
+          "low": 0,
+          "high": 0,
+          "unsigned": false
+        }
+      },
+      "tokenMemo": "",
+      "customFees": [
+        {
+          "_feeCollectorAccountId": {
+            "shard": {
+              "low": 0,
+              "high": 0,
+              "unsigned": false
+            },
+            "realm": {
+              "low": 0,
+              "high": 0,
+              "unsigned": false
+            },
+            "num": {
+              "low": 30802822,
+              "high": 0,
+              "unsigned": false
+            },
+            "aliasKey": null,
+            "_checksum": null
+          },
+          "_fallbackFee": {
+            "_amount": {
+              "low": 2000000000,
+              "high": 0,
+              "unsigned": false
+            }
+          },
+          "_numerator": {
+            "low": 5,
+            "high": 0,
+            "unsigned": false
+          },
+          "_denominator": {
+            "low": 10,
+            "high": 0,
+            "unsigned": false
+          }
+        }
+      ],
+      "tokenType": {
+        "_code": 1
+      },
+      "supplyType": {
+        "_code": 1
+      },
+      "maxSupply": {
+        "low": 100,
+        "high": 0,
+        "unsigned": false
+      },
+      "ledgerId": {
+        "_ledgerId": {
+          "type": "Buffer",
+          "data": [
+            1
+          ]
+        }
+      }
+    },
+    "result": 13
+  },
+  "statusCode": 200
 }
 ```
 
@@ -47,15 +394,7 @@ See [Install Locally](#install-locally) for a quickstart
 Install dependencies:
 
 ```bash
-yarn
-```
-
-### Test
-
-Run the local tests:
-
-```bash
-yarn test
+npm install
 ```
 
 Natively run the application (defaults to port 8080):
@@ -63,7 +402,7 @@ Natively run the application (defaults to port 8080):
 ### Run
 
 ```bash
-yarn start
+npm run run-local
 ```
 
 ## Call the external adapter/API server
@@ -88,70 +427,11 @@ docker run -p 8080:8080 -it external-adapter:latest
 
 ## Serverless hosts
 
-After [installing locally](#install-locally):
-
-### Create the zip
-
-```bash
-zip -r external-adapter.zip .
-```
-
-### Install to AWS Lambda
-
-- In Lambda Functions, create function
-- On the Create function page:
-  - Give the function a name
-  - Use Node.js 12.x for the runtime
-  - Choose an existing role or create a new one
-  - Click Create Function
-- Under Function code, select "Upload a .zip file" from the Code entry type drop-down
-- Click Upload and select the `external-adapter.zip` file
-- Handler:
-    - index.handler for REST API Gateways
-    - index.handlerv2 for HTTP API Gateways
-- Add the environment variable (repeat for all environment variables):
-  - Key: API_KEY
-  - Value: Your_API_key
-- Save
-
-#### To Set Up an API Gateway (HTTP API)
-
-If using a HTTP API Gateway, Lambda's built-in Test will fail, but you will be able to externally call the function successfully.
-
-- Click Add Trigger
-- Select API Gateway in Trigger configuration
-- Under API, click Create an API
-- Choose HTTP API
-- Select the security for the API
-- Click Add
-
-#### To Set Up an API Gateway (REST API)
-
-If using a REST API Gateway, you will need to disable the Lambda proxy integration for Lambda-based adapter to function.
-
-- Click Add Trigger
-- Select API Gateway in Trigger configuration
-- Under API, click Create an API
-- Choose REST API
-- Select the security for the API
-- Click Add
-- Click the API Gateway trigger
-- Click the name of the trigger (this is a link, a new window opens)
-- Click Integration Request
-- Uncheck Use Lamba Proxy integration
-- Click OK on the two dialogs
-- Return to your function
-- Remove the API Gateway and Save
-- Click Add Trigger and use the same API Gateway
-- Select the deployment stage and security
-- Click Add
 
 ### Install to GCP
 
-- In Functions, create a new function, choose to ZIP upload
-- Click Browse and select the `external-adapter.zip` file
-- Select a Storage Bucket to keep the zip in
+- In Functions, create a new function, Zip option isn't working so you have to paste all the .js files
 - Function to execute: gcpservice
 - Click More, Add variable (repeat for all environment variables)
-  - NAME: API_KEY
-  - VALUE: Your_API_key
+  - NAME: HEDERA_ACCOUNT_ID
+  - VALUE: 

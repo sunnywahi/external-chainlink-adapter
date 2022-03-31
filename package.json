@@ -6,12 +6,14 @@
   "license": "MIT",
   "scripts": {
     "test": "./node_modules/.bin/_mocha --timeout 0",
-    "start": "node app.js"
+    "run-local": "node app.js",
+    "start": "functions-framework --target=gcpservice"
   },
   "dependencies": {
     "@chainlink/contracts": "^0.4.0",
     "@chainlink/external-adapter": "^0.2.3",
     "@chainlink/token": "^1.1.0",
+    "@google-cloud/functions-framework": "^3.0.0",
     "@hashgraph/hethers": "^1.1.0",
     "@hashgraph/sdk": "^2.11.3",
     "dotenv": "^16.0.0"
