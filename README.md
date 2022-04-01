@@ -2,8 +2,14 @@
 
 This adapter is in NodeJS. Comments are included to assist with development and testing of the external adapter. Once the API-specific values (like query parameters and API key authentication) have been added to the adapter, it is very easy to add some tests to verify that the data will be correctly formatted when returned to the Chainlink node. There is no need to use any additional frameworks or to run a Chainlink node in order to test the adapter.
 
+## This adapter has ability to connect to hedera using their SDK
+- `acount balance` - can do account balance operation
+- `token info` - can fetch token info
+- `mint` -can mint token for a given tokenId
 
-See [Install Locally](#install-locally) for a quickstart
+## zip the file
+
+`7z a external-adapter.zip "*.*" -r`
 
 ## Input Params
 

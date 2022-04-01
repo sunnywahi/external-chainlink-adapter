@@ -2,6 +2,7 @@ const {Client} = require("@hashgraph/sdk");
 require('dotenv').config();
 const { processRequest } = require('./fetch-data.js');
 
+//Depicting a POST api call for retreiving data.
 const appRoute = (app, hederaClient) => {
 
   app.post('/', async (req, res) => {

@@ -27,6 +27,7 @@ const customParams = {
     endpoint: false
 }
 
+// function that can take the data and do the native processing
 const processRequest = async (hederaClient, input, callback) => {
     const validator = new Validator(input, customParams);
     const jobRunID = validator.validated.id;
@@ -63,6 +64,7 @@ const processRequest = async (hederaClient, input, callback) => {
     callback(200, response);
 }
 
+//Function that can take the data and do outside REST CALL
 const createRequest = (input, callback) => {
     // The Validator helps you validate the Chainlink request data
     const validator = new Validator(callback, input, customParams)
