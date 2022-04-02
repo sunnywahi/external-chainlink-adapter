@@ -486,4 +486,10 @@ observationSource = """
 """
 ```
 
+### Important params that you need to provide in your api consumer contract
 
+- `linkToken`: link token address deployed on a chain
+- `oracle`: address of chainlink oracle that has our chainlink node added to it.
+- `jobId`: job that has the external adapter bridge added that we can call and get data from
+
+### Node address on Kovan, that we have deployed 0x1eDC8c2105AC01313033e91A3d4307f2cdE09E54
