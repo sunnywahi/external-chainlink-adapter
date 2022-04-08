@@ -14,7 +14,7 @@ We list steps here deploying chainlink node over GCP using VM, we have followed 
 ## Install the docker image on VM
 - Once you have setup the ssh over your vm instance (note you will need google sdk for connecting from local machine), after watching the above video, you can do the following command
 ```
-    gcloud compute --project "arboreal-parser-345405" ssh --zone "australia-southeast2-a" "chainlink-kovan" -- -L 6688:localhost:6688
+    gcloud compute --project "REPLACE WITH YOUR PROJECT ID" ssh --zone "australia-southeast2-a" "chainlink-kovan" -- -L 6688:localhost:6688
 ```
 - Then do the following step for Ubuntu, you can find the step here `https://docs.chain.link/docs/running-a-chainlink-node/`
 ```
