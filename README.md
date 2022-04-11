@@ -132,7 +132,7 @@ docker run -p 8080:8080 -it external-chainlink-adapter:latest
 ### Next steps deploy your own oracle
 - Go to https://docs.chain.link/docs/fulfilling-requests/ and then follow section`Deploy your own Oracle Contract`
 - The follow section `Add your node to the oracle contract`
-- Then follow section `Add a job the node section`, Using bridge we can define our job, here in this case bridge name is hedera-data
+- Then follow section `Add a job the node section`, Using bridge we can define our job, here in this case bridge name is hedera-data, here note to update the contractAddress of Oracle which is 0xd8A207C172131DeDCD6B1cA83d16C5EAb3439A8b to your oracle address in 2 places
 ```
 type = "directrequest"
 schemaVersion = 1
@@ -163,7 +163,7 @@ observationSource = """
 
 - `linkToken`: link token address deployed on a chain
 - `oracle`: address of chainlink oracle that has our chainlink node added to it.
-- `jobId`: job that has the external adapter bridge added that we can call and get data from
+- `jobId`: job that has the external adapter bridge added that we can call and get data from, make sure you remove any `-` in the jobId.
 
 
 ### There is also one more way you can test your serverless function via webhook job
