@@ -82,10 +82,15 @@ npm install
 
 Natively run the application (defaults to port 8080):
 
-### Run
-
+### Running the app locally
 ```bash
 npm run run-local
+```
+
+### Testing the google cloud function locally
+
+```bash
+npm start
 ```
 
 ## Call the external adapter/API server
@@ -159,13 +164,6 @@ observationSource = """
 """
 ```
 
-### Then you can do the `Create a request to your node` from https://docs.chain.link/docs/fulfilling-requests/ , or you can use the external-chainlink-adapter-api project for the same
-
-- `linkToken`: link token address deployed on a chain
-- `oracle`: address of chainlink oracle that has our chainlink node added to it.
-- `jobId`: job that has the external adapter bridge added that we can call and get data from, make sure you remove any `-` in the jobId.
-
-
 ### There is also one more way you can test your serverless function via webhook job
 - Please note here you directly give the bridge name and supply the fix parameters and when you have made this job, it will give you RUN button on top and you can just click on it.
 ```
@@ -179,3 +177,10 @@ fetch        [type=bridge name="hedera-data" requestData="{\\"id\\": \\"0\\", \\
     fetch
 """
 ```
+
+### if you are happy with your function and data and then you can use the external-chainlink-api-consumer project for the same to making a call to the job and getting data from the node
+
+- `linkToken`: link token address deployed on a chain
+- `oracle`: address of chainlink oracle that has our chainlink node added to it.
+- `jobId`: job that has the external adapter bridge added that we can call and get data from, make sure you remove any `-` in the jobId.
+
