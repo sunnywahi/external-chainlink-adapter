@@ -14,8 +14,10 @@ We list steps here deploying chainlink node over GCP using VM, we have followed 
 ## Install the docker image on VM
 - Once you have setup the ssh over your vm instance (note you will need google sdk for connecting from local machine), after watching the above video, you can do the following command
 ```
-    gcloud compute --project "REPLACE WITH YOUR PROJECT ID" ssh --zone "australia-southeast2-a" "chainlink-kovan" -- -L 6688:localhost:6688
+    gcloud compute --project "REPLACE WITH YOUR PROJECT ID" ssh --zone "REPLACE ZONE" "chainlink-kovan" -- -L 6688:localhost:6688
 ```
+- REPLACE WITH YOUR PROJECT ID- the project id that you have setup the VM in.
+- REPLACE ZONE- zone of the project ID
 - Then do the following step for Ubuntu, you can find the step here `https://docs.chain.link/docs/running-a-chainlink-node/`
 ```
 curl -sSL https://get.docker.com/ | sh
@@ -56,8 +58,8 @@ exit
 - Start the node
 ```
     cd ~/.chainlink-kovan && docker run --rm --name kovan-main -p 6688:6688 -v ~/.chainlink-kovan:/chainlink -it --env-file=.env smartcontract/chainlink:1.2.0 local n
-    here we have named your docker image as kovan-main
 ```
-Please note: The first time running the image, it will ask you for a password and confirmation. This will be your wallet password that you can use to unlock the keystore file generated for you. Then, you'll be prompted to enter an API Email and Password.
+-  here we have named your docker image as kovan-main, if you want to change it, then edit `--name XXXX`
+Please note: The first time running the image, it will ask you for a password and confirmation. This will be your wallet password that you can use to unlock the keystore file generated for you. Then, you'll be prompted to enter an API Email and Password, this will be your login password to UI.
 
 
