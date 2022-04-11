@@ -170,7 +170,6 @@ observationSource = """
 type = "webhook"
 schemaVersion = 1
 name = "HEDERA-DATA-EA-Web"
-externalJobID = "2825a77a-29d6-49df-b6dd-bbf326798c9a"
 observationSource = """
 fetch        [type=bridge name="hedera-data" requestData="{\\"id\\": \\"0\\", \\"data\\": { \\"type\\": \\"account\\", \\"accountId\\": \\"0.0.30802822\\", \\"mint\\": \\"\\"}}"]
 
