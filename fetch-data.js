@@ -20,16 +20,27 @@ const customError = (data) => {
 // Extra parameters can be stated in the extra object,
 // with a Boolean value indicating whether or not they
 // should be required.
-const customParams = {
+const processRequestCustomParams = {
     account: ['type'],
     value: ['value', 'accountId', 'tokenId'],
     mint: false,
     endpoint: false
 }
 
+const createRequestCustomParams = {
+    // An array of strings can be used to indicate that one of
+    // the following keys must be supplied by the requester
+    base: ['base', 'from', 'coin'],
+    quote: ['quote', 'to', 'market'],
+    // Specific keys can be given a Boolean flag to indicate
+    // whether or not the requester is required to provide
+    // a value
+    endpoint: false,
+}
+
 // function that can take the data and do the native processing
 const processRequest = async (hederaClient, input, callback) => {
-    const validator = new Validator(input, customParams);
+    const validator = new Validator(input, processRequestCustomParams);
     const jobRunID = validator.validated.id;
     const type = validator.validated.data.account;
     const value = validator.validated.data.value;
@@ -67,7 +78,7 @@ const processRequest = async (hederaClient, input, callback) => {
 //Function that can take the data and do outside REST CALL
 const createRequest = (input, callback) => {
     // The Validator helps you validate the Chainlink request data
-    const validator = new Validator(callback, input, customParams)
+    const validator = new Validator(callback, input, createRequestCustomParams)
     const jobRunID = validator.validated.id
     const endpoint = validator.validated.data.endpoint || 'price'
     const url = `https://min-api.cryptocompare.com/data/${endpoint}`
