@@ -44,9 +44,9 @@ exit
 - Since we are using third party eth client we update .env file 
 ```
     echo "ETH_URL=CHANGEME" >> ~/.chainlink-kovan/.env
-    
-    where CHANGEME is update the value for CHANGEME to the value given by your provider or the address and port of your separate instance
 ```
+#### where CHANGEME is update the value for CHANGEME to the value given by your provider or the address and port of your separate instance, in our case it is ETH_URL=wss://kovan.infura.io/ws/v3/7047f9ad6bd44e84836a99fe1c1845d9
+
 - Set the Database URL in your .env file
 ```
    echo "DATABASE_URL=postgresql://$USERNAME:$PASSWORD@$SERVER:$PORT/$DATABASE" >> ~/.chainlink-kovan/.env
