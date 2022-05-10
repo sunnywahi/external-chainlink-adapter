@@ -1,6 +1,6 @@
 const {Client} = require("@hashgraph/sdk");
 require('dotenv').config();
-const { processRequest } = require('./fetch-data.js');
+const { processRequest, balanceCheck } = require('./fetch-data.js');
 
 //Depicting a POST api call for retreiving data.
 const appRoute = (app, hederaClient) => {
@@ -9,6 +9,19 @@ const appRoute = (app, hederaClient) => {
     console.log('POST Data: ', req.body)
     try {
       await processRequest(hederaClient, req.body, (status, result) => {
+        console.log('Result: ', result)
+        res.status(status).json(result)
+      });
+    }catch (error) {
+      console.log(`exception while processing the request ${error}`);
+      res.status(500).send('failed while processing the request');
+    }
+  })
+
+  app.get('/balance', async (req, res) => {
+    console.log('Check balance: ', req.body)
+    try {
+      await balanceCheck(req.body, (status, result) => {
         console.log('Result: ', result)
         res.status(status).json(result)
       });

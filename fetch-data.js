@@ -75,6 +75,24 @@ const processRequest = async (hederaClient, input, callback) => {
     callback(200, response);
 }
 
+const balanceCheck = async(input, callback) => {
+    const jobRunID = input.id;
+    let responseResult = between(1, 100);
+
+    let response = {
+        jobRunID,
+        data: {
+            raw: {
+                name : "randomBalanceNumber",
+                balance: responseResult
+            },
+            result: responseResult
+        },
+        statusCode: 200
+    }
+    callback(200, response);
+}
+
 //Function that can take the data and do outside REST CALL
 const createRequest = (input, callback) => {
     // The Validator helps you validate the Chainlink request data
@@ -156,9 +174,17 @@ async function mintToken(hederaClient, token) {
     return mintTxReceipt.serials[0].low;
 }
 
+function between(min, max) {
+    return Math.floor(
+        Math.random() * (max - min) + min
+    )
+}
+
+
 // This allows the function to be exported for testing
 // or for running in express
 module.exports = {
     createRequest,
-    processRequest
+    processRequest,
+    balanceCheck
 }

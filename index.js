@@ -1,10 +1,17 @@
-const {processRequest, createRequest} =require('./fetch-data.js');
+const {processRequest, createRequest, balanceCheck} =require('./fetch-data.js');
 const{Client} = require('@hashgraph/sdk');
 require('dotenv').config();
 
 exports.helloWorld = (req, res) => {
     res.send('Hello, World');
 };
+
+exports.balance =async (req, res) => {
+    await balanceCheck(req.body, (status, result) => {
+        console.log('Result: ', result)
+        res.status(status).json(result)
+    });
+}
 
 exports.gcpservice = async (req, res) => {
     //initialise the hedera test client
