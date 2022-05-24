@@ -78,17 +78,18 @@ const processRequest = async (hederaClient, input, callback) => {
 const balanceCheck = async(input, callback) => {
     const jobRunID = input.id;
     let responseResult = between(1, 100);
-
+    let today = new Date();
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     let response = {
-        jobRunID,
-        data: {
-            raw: {
-                name : "randomBalanceNumber",
-                balance: responseResult
-            },
-            result: responseResult
+        balance: {
+            accountNumber : "123456",
+            accountSystem : "anz",
+            currencyCode : "AUD",
+            country : "Australia",
+            effectiveDate : date,
+            availableBalance : responseResult.toString()
         },
-        statusCode: 200
+        status: "success"
     }
     callback(200, response);
 }

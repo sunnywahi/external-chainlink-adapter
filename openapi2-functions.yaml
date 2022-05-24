@@ -1,11 +1,14 @@
 # openapi2-functions.yaml
 swagger: '2.0'
 info:
-  title: proof-of-reserve external adapter for chain-link
+  title: anz-proof-of-reserve exposing proof-of-reserve-api
   description: Sample API on API Gateway with a Google Cloud Functions backend
   version: 1.0.0
 schemes:
   - https
+  - http
+consumes:
+  - application/json
 produces:
   - application/json
 paths:
@@ -14,9 +17,33 @@ paths:
       summary: Give balance of an account
       operationId: balance
       x-google-backend:
-        address: https://australia-southeast1-level-harbor-348605.cloudfunctions.net/balance-check-test
+        address: https://australia-southeast1-level-harbor-348605.cloudfunctions.net/proof-of-reserve
       responses:
         '200':
           description: A successful response
           schema:
-            type: string
+            $ref: "#/definitions/Balance"
+definitions:
+  Balance:
+    type: "object"
+    properties:
+      status:
+        type: "string"
+        enum:
+        - "success"
+        - "error"
+      balance:
+        type: "object"
+        properties:
+          accountNumber:
+            type: "string"
+          accountSystem:
+            type: "string"
+          currencyCode:
+            type: "string"
+          country:
+            type: "string"
+          effectiveDate:
+            type: "string"
+          availableBalance:
+            type: "string"
